@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gpt-ds-bridge"
+version = "0.1.0"
+description = "将 GPT 规划与 DeepSeek Harness 持久会话执行自动串联"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.9,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9"]
+
+[project.scripts]
+gpt-ds-bridge = "gpt_ds_bridge.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gpt_ds_bridge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
